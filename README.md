@@ -38,3 +38,46 @@ Before running the animations, ensure you have the following installed:
    ```bash
    git clone https://github.com/<your-username>/<repo-name>.git
    cd <repo-name>
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+---
+
+## 🎥 Rendering Animations
+
+To render a scene from your Python file:
+
+### Fast Preview (Low Quality - 480p, 15fps)
+Ideal for testing alignments, timing, and layout:
+```bash
+python -m manim -pql main.py <SceneName>
+```
+
+### Final Export (High Quality - 1080p, 60fps)
+Use this when you are ready to publish:
+```bash
+python -m manim -pqh main.py <SceneName>
+```
+
+> **Flags explanation:**
+> * `-p`: Preview the video immediately after rendering finishes.
+> * `-ql`: Quality Low (fast render).
+> * `-qh`: Quality High (production ready).
+
+Output video files are saved automatically in the `media/videos/` directory.
+
+---
+
+## 📂 Project Structure
+
+```text
+├── .gitignore          # Excludes media/, cache, and virtual environments
+├── LICENSE             # Open-source license
+├── README.md           # Project documentation and instructions
+├── requirements.txt    # Python dependencies
+└── main.py             # Animation scripts and scene definitions
+```
