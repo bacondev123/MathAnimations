@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/8e0d0ad1-9e24-4d3d-8dcc-3ae370d36f1a
 # 🎬 Math Animations with Manim
 
 A boilerplate and workspace for creating 3Blue1Brown-style mathematical animations using Python and the **Manim Community Edition (ManimCE)** engine.
@@ -7,7 +9,11 @@ A boilerplate and workspace for creating 3Blue1Brown-style mathematical animatio
 ## 📽️ Showcase
 
 <!-- Upload your .mp4 by dragging and dropping it into GitHub's README web editor here -->
-<video src="YOUR_VIDEO_URL_HERE" controls="controls" style="max-width: 100%;"></video>
+<video src="https://github.com/user-attachments/assets/0f27d374-557e-4372-9d9a-952177063baf" controls="controls" style="max-w
+
+
+
+idth: 100%;"></video>
 
 ---
 
