@@ -1,0 +1,17 @@
+# --- Manim Render Outputs (CRUCIAL: becomes gigabytes fast) ---
+media/
+
+# --- Python Cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- VS Code & System files ---
+.vscode/
+Thumbs.db
+.DS_Store
+
+# --- Virtual Environments (if you ever use them) ---
+venv/
+.venv/
+env/
