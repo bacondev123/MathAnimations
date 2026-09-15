@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Manim: Render Preview (Fast)",
+      "type": "shell",
+      "command": "python -m manim -pql main.py ShadowMeasurement",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Manim: Render Full HD (1080p)",
+      "type": "shell",
+      "command": "python -m manim -pqh main.py ShadowMeasurement",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
