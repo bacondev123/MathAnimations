@@ -21,40 +21,39 @@ class FlagpoleShadowMeasurement(Scene):
         # ----------------------------------------------------
         # 1. Title & Intro
         # ----------------------------------------------------
-        title = Text("การวัดความสูงเสาธงด้วยเงา", font=thai_font, font_size=32, color=WHITE).to_edge(UP)
-        subtitle = Text("การประยุกต์ใช้เรื่องความคล้าย (Similar Triangles)", font=thai_font, font_size=18, color=GRAY_B).next_to(title, DOWN, buff=0.15)
+        title = Text("การวัดความสูงเสาธงด้วยเงา", font=thai_font, font_size=30, color=WHITE).to_edge(UP, buff=0.35)
+        subtitle = Text("การประยุกต์ใช้เรื่องความคล้าย (Similar Triangles)", font=thai_font, font_size=16, color=GRAY_B).next_to(title, DOWN, buff=0.12)
         
         self.play(Write(title), FadeIn(subtitle))
         self.wait(1)
 
         # ----------------------------------------------------
-        # 2. Ground & Sun
+        # 2. Ground & Sun (Tucked into the far upper-left corner)
         # ----------------------------------------------------
         ground_y = -2.2
         ground = Line(LEFT * 7.2, RIGHT * 7.2, color=GRAY_C).shift(UP * ground_y)
         
-        sun_pos = LEFT * 5.6 + UP * 2.7
-        sun = Dot(sun_pos, radius=0.32, color=YELLOW)
-        sun_glow = Circle(radius=0.55, color=YELLOW, stroke_opacity=0.4).move_to(sun_pos)
-        sun_label = Text("ดวงอาทิตย์", font=thai_font, font_size=15, color=YELLOW).next_to(sun, DOWN, buff=0.15)
+        sun_pos = LEFT * 6.0 + UP * 3.2
+        sun = Dot(sun_pos, radius=0.28, color=YELLOW)
+        sun_glow = Circle(radius=0.48, color=YELLOW, stroke_opacity=0.35).move_to(sun_pos)
+        sun_label = Text("ดวงอาทิตย์", font=thai_font, font_size=13, color=YELLOW).next_to(sun, DOWN, buff=0.1)
 
         self.play(Create(ground), FadeIn(sun, sun_glow, sun_label))
 
         # ----------------------------------------------------
-        # 3. Reference Stick (ไม้เมตร) & Flagpole (เสาธง)
+        # 3. Reference Stick & Flagpole
         # ----------------------------------------------------
-        # Scaled coordinates for screen visualization
-        stick_x = -3.8
+        stick_x = -4.0
         stick_draw_h = 1.15
         stick_draw_s = 1.6
 
-        pole_x = 0.6
+        pole_x = 0.8
         pole_draw_h = 2.9
         pole_draw_s = 4.0
 
         # --- Reference Stick ---
         stick = Line([stick_x, ground_y, 0], [stick_x, ground_y + stick_draw_h, 0], color=LIGHT_BROWN, stroke_width=6)
-        stick_label = Text(f"ไม้เมตร ({STICK_HEIGHT_M:.1f} ม.)", font=thai_font, font_size=16, color=LIGHT_PINK).next_to(stick, LEFT, buff=0.15)
+        stick_label = Text(f"ไม้เมตร ({STICK_HEIGHT_M:.1f} ม.)", font=thai_font, font_size=15, color=LIGHT_PINK).next_to(stick, LEFT, buff=0.15)
 
         # --- Flagpole Construction ---
         pole_base = Rectangle(width=0.4, height=0.15, color=GRAY, fill_color=GRAY, fill_opacity=1).move_to([pole_x, ground_y + 0.075, 0])
@@ -72,14 +71,14 @@ class FlagpoleShadowMeasurement(Scene):
         ).arrange(DOWN, buff=0).next_to([pole_x, ground_y + pole_draw_h - 0.25, 0], RIGHT, buff=0)
 
         flagpole_group = VGroup(pole_base, pole_body, pole_finial, flag_stripes)
-        pole_label = Text("เสาธง (H = ?)", font=thai_font, font_size=18, color=YELLOW).next_to(pole_finial, UP, buff=0.15)
+        pole_label = Text("เสาธง (H = ?)", font=thai_font, font_size=17, color=YELLOW).next_to(pole_finial, UP, buff=0.15)
 
         self.play(Create(stick), Write(stick_label))
         self.play(Create(flagpole_group), Write(pole_label))
         self.wait(1)
 
         # ----------------------------------------------------
-        # 4. Parallel Sunlight Rays & Shadows
+        # 4. Sunlight Rays & Shadows
         # ----------------------------------------------------
         ray_stick = DashedLine(sun_pos, [stick_x + stick_draw_s, ground_y, 0], color=YELLOW_B, stroke_width=2)
         ray_pole  = DashedLine(sun_pos, [pole_x + pole_draw_s, ground_y, 0], color=YELLOW_B, stroke_width=2)
@@ -88,8 +87,6 @@ class FlagpoleShadowMeasurement(Scene):
         shadow_pole  = Line([pole_x, ground_y, 0], [pole_x + pole_draw_s, ground_y, 0], color=ORANGE, stroke_width=8)
 
         lbl_s_stick = Text(f"เงาไม้ = {STICK_SHADOW_M} ม.", font=thai_font, font_size=15, color=BLUE_C).next_to(shadow_stick, DOWN, buff=0.15)
-        
-        # Displaying the 400+400+400+60 segment measurement
         lbl_s_pole = Text("เงาเสาธง = 1,260 ซม. (12.6 ม.)", font=thai_font, font_size=15, color=ORANGE).next_to(shadow_pole, DOWN, buff=0.15)
         lbl_s_segments = Text("(400 + 400 + 400 + 60 ซม.)", font=thai_font, font_size=13, color=GRAY).next_to(lbl_s_pole, DOWN, buff=0.08)
 
@@ -120,25 +117,46 @@ class FlagpoleShadowMeasurement(Scene):
         self.play(FadeIn(tri_stick), FadeIn(tri_pole))
 
         concept_note = Text(
-            "แสงแดดส่องขนานกัน → มุมตกกระทบเท่ากัน → สามเหลี่ยมคล้ายกัน (ม.ม.)", 
-            font=thai_font, font_size=18, color=GOLD
-        ).to_edge(UP).shift(DOWN * 0.8)
+            "แสงแดดขนานกัน → มุมเท่ากัน → สามเหลี่ยมคล้ายกัน (ม.ม.)", 
+            font=thai_font, font_size=16, color=GOLD
+        ).next_to(title, DOWN, buff=0.15)
 
         self.play(FadeOut(subtitle), Write(concept_note))
         self.wait(2)
 
         # ----------------------------------------------------
-        # 6. Step-by-Step Calculation
+        # 6. Smooth Transition to Math (Clear clutter)
         # ----------------------------------------------------
-        self.play(FadeOut(concept_note))
+        # Fade out title, notes, and the slicing ray to free the upper screen
+        self.play(
+            FadeOut(title), 
+            FadeOut(concept_note),
+            FadeOut(ray_stick),
+            FadeOut(ray_pole)
+        )
 
-        eq1 = Text("ความสูงเสาธง / เงาเสาธง  =  ความสูงไม้ / เงาไม้", font=thai_font, font_size=19, color=WHITE)
-        eq2 = Text(f"H / {POLE_SHADOW_M}  =  {STICK_HEIGHT_M} / {STICK_SHADOW_M}", font_size=23, color=YELLOW)
-        eq3 = Text(f"H  =  ({STICK_HEIGHT_M} × {POLE_SHADOW_M}) / {STICK_SHADOW_M}", font_size=23, color=WHITE)
-        ans = Text(f"H  =  {POLE_HEIGHT_M:.1f} เมตร! (หรือ {int(POLE_HEIGHT_M * 100)} ซม.)", font=thai_font, font_size=25, color=GREEN)
+        # Calculation group with clean typography
+        calc_header = Text("คำนวณความสูงเสาธงด้วยอัตราส่วน:", font=thai_font, font_size=16, color=BLUE_B)
+        eq1 = Text("ความสูงเสาธง / เงาเสาธง  =  ความสูงไม้ / เงาไม้", font=thai_font, font_size=16, color=WHITE)
+        eq2 = Text(f"H / {POLE_SHADOW_M}  =  {STICK_HEIGHT_M} / {STICK_SHADOW_M}", font=thai_font, font_size=20, color=YELLOW)
+        eq3 = Text(f"H  =  ({STICK_HEIGHT_M} × {POLE_SHADOW_M}) / {STICK_SHADOW_M}", font=thai_font, font_size=20, color=WHITE)
+        ans = Text(f"H  =  {POLE_HEIGHT_M:.1f} เมตร (หรือ {int(POLE_HEIGHT_M * 100)} ซม.)", font=thai_font, font_size=22, color=GREEN)
 
-        calc_box = VGroup(eq1, eq2, eq3, ans).arrange(DOWN, buff=0.22).to_corner(UL).shift(RIGHT * 0.3)
+        calc_group = VGroup(calc_header, eq1, eq2, eq3, ans).arrange(DOWN, buff=0.18, aligned_edge=LEFT)
+        calc_group.to_edge(UP, buff=0.35).shift(LEFT * 0.4)
 
+        # Sleek dark background card so it pops cleanly
+        calc_card = RoundedRectangle(
+            corner_radius=0.15,
+            width=calc_group.width + 0.6,
+            height=calc_group.height + 0.4,
+            color=GRAY_D,
+            fill_color="#181818",
+            fill_opacity=0.88,
+            stroke_width=1.5
+        ).move_to(calc_group)
+
+        self.play(FadeIn(calc_card), Write(calc_header))
         self.play(Write(eq1))
         self.wait(1)
         self.play(Write(eq2))
@@ -148,6 +166,6 @@ class FlagpoleShadowMeasurement(Scene):
         self.play(Write(ans))
 
         # Green highlight box for the final answer
-        box = SurroundingRectangle(ans, color=GREEN, buff=0.12)
+        box = SurroundingRectangle(ans, color=GREEN, buff=0.1)
         self.play(Create(box))
         self.wait(3)
