@@ -6,8 +6,8 @@ config.background_color = "#171717"
 # ====================================================================
 # MEASUREMENT DATA (แก้ไขค่าตัวเลขจริงตรงนี้ได้เลย)
 # ====================================================================
-STICK_HEIGHT_M = 1.0    # ความสูงไม้เมตร (100 ซม. / 1.0 ม.)
-STICK_SHADOW_M = 1.4    # ความยาวเงาไม้ (140 ซม. / 1.4 ม.)
+STICK_HEIGHT_M = 1.6    # ความสูงไม้เมตร (167 ซม. / 1.6 ม.) 
+STICK_SHADOW_M = 1.9    # ความยาวเงาไม้ (194 ซม. / 1.9 ม.) 
 POLE_SHADOW_M  = 12.6   # ความยาวเงาเสาธง: 400 + 400 + 400 + 60 = 1260 ซม. (12.6 ม.)
 
 # คำนวณความสูงเสาธงอัตโนมัติ: H = (h_stick * s_pole) / s_stick
@@ -53,7 +53,7 @@ class FlagpoleShadowMeasurement(Scene):
 
         # --- Reference Stick ---
         stick = Line([stick_x, ground_y, 0], [stick_x, ground_y + stick_draw_h, 0], color=LIGHT_BROWN, stroke_width=6)
-        stick_label = Text(f"ไม้เมตร ({STICK_HEIGHT_M:.1f} ม.)", font=thai_font, font_size=15, color=LIGHT_PINK).next_to(stick, LEFT, buff=0.15)
+        stick_label = Text(f"คน ({STICK_HEIGHT_M:.1f} ม.)", font=thai_font, font_size=15, color=LIGHT_PINK).next_to(stick, LEFT, buff=0.15)
 
         # --- Flagpole Construction ---
         pole_base = Rectangle(width=0.4, height=0.15, color=GRAY, fill_color=GRAY, fill_opacity=1).move_to([pole_x, ground_y + 0.075, 0])
@@ -86,7 +86,7 @@ class FlagpoleShadowMeasurement(Scene):
         shadow_stick = Line([stick_x, ground_y, 0], [stick_x + stick_draw_s, ground_y, 0], color=BLUE_C, stroke_width=8)
         shadow_pole  = Line([pole_x, ground_y, 0], [pole_x + pole_draw_s, ground_y, 0], color=ORANGE, stroke_width=8)
 
-        lbl_s_stick = Text(f"เงาไม้ = {STICK_SHADOW_M} ม.", font=thai_font, font_size=15, color=BLUE_C).next_to(shadow_stick, DOWN, buff=0.15)
+        lbl_s_stick = Text(f"เงาคน = {STICK_SHADOW_M} ม.", font=thai_font, font_size=15, color=BLUE_C).next_to(shadow_stick, DOWN, buff=0.15)
         lbl_s_pole = Text("เงาเสาธง = 1,260 ซม. (12.6 ม.)", font=thai_font, font_size=15, color=ORANGE).next_to(shadow_pole, DOWN, buff=0.15)
         lbl_s_segments = Text("(400 + 400 + 400 + 60 ซม.)", font=thai_font, font_size=13, color=GRAY).next_to(lbl_s_pole, DOWN, buff=0.08)
 
@@ -137,7 +137,7 @@ class FlagpoleShadowMeasurement(Scene):
 
         # Calculation group with clean typography
         calc_header = Text("คำนวณความสูงเสาธงด้วยอัตราส่วน:", font=thai_font, font_size=16, color=BLUE_B)
-        eq1 = Text("ความสูงเสาธง / เงาเสาธง  =  ความสูงไม้ / เงาไม้", font=thai_font, font_size=16, color=WHITE)
+        eq1 = Text("ความสูงเสาธง / เงาเสาธง  =  ความสูงคน / เงาคน", font=thai_font, font_size=16, color=WHITE)
         eq2 = Text(f"H / {POLE_SHADOW_M}  =  {STICK_HEIGHT_M} / {STICK_SHADOW_M}", font=thai_font, font_size=20, color=YELLOW)
         eq3 = Text(f"H  =  ({STICK_HEIGHT_M} × {POLE_SHADOW_M}) / {STICK_SHADOW_M}", font=thai_font, font_size=20, color=WHITE)
         ans = Text(f"H  =  {POLE_HEIGHT_M:.1f} เมตร (หรือ {int(POLE_HEIGHT_M * 100)} ซม.)", font=thai_font, font_size=22, color=GREEN)
