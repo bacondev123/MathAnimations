@@ -44,7 +44,7 @@ Rendered videos are saved to `media/videos/`.
 ## Project Structure
 
 ```text
-├── main.py             # Animation scenes
-├── requirements.txt    # Dependencies
-└── media/              # Rendered output (gitignored)
+├── main.py            
+├── requirements.txt    
+└── media/              
 ```
